@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ritesh Kumar — Django Backend Developer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* ======= GLOBAL ======= */
+
+:root{
+--bg:#080c10;
+--bg2:#0e1318;
+--bg3:#131920;
+--border:rgba(255,255,255,0.07);
+--text:#e8edf2;
+--muted:#6b7f8e;
+--accent:#00d8a4;
+--accent2:#00aaff;
+--mono:'JetBrains Mono',monospace;
+--display:'Syne',sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:var(--mono);
+line-height:1.7;
+font-size:14px;
+}
+
+section{
+max-width:1100px;
+margin:auto;
+padding:7rem 2rem;
+}
+
+h1,h2{
+font-family:var(--display);
+}
+
+.section-title span{color:var(--accent)}
+
+.section-label{
+font-size:.7rem;
+letter-spacing:.2em;
+text-transform:uppercase;
+color:var(--accent);
+margin-bottom:.6rem
+}
+
+/* ======= NAV ======= */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+right:0;
+background:#080c10cc;
+backdrop-filter:blur(10px);
+border-bottom:1px solid var(--border);
+padding:1.2rem 3rem;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:100;
+}
+
+.nav-links{
+display:flex;
+gap:2rem;
+list-style:none
+}
+
+.nav-links a{
+color:var(--muted);
+text-decoration:none;
+font-size:.8rem;
+text-transform:uppercase;
+letter-spacing:.1em
+}
+
+.nav-links a:hover{color:var(--accent)}
+
+/* ===== HERO ===== */
+
+#hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.hero-tag{
+background:rgba(0,216,164,0.08);
+border:1px solid rgba(0,216,164,0.2);
+border-radius:100px;
+padding:.3rem .9rem;
+font-size:.72rem;
+color:var(--accent);
+margin-bottom:2rem;
+width:fit-content
+}
+
+.hero-name{
+font-size:5rem;
+line-height:1;
+margin-bottom:.6rem
+}
+
+.hero-name .line2{
+color:transparent;
+-webkit-text-stroke:1px rgba(255,255,255,.25)
+}
+
+.hero-role{
+color:var(--muted);
+margin-bottom:1.8rem
+}
+
+.hero-role span{color:var(--accent)}
+
+.hero-desc{
+max-width:520px;
+color:var(--muted);
+margin-bottom:2rem
+}
+
+.hero-actions a{
+margin-right:1rem;
+text-decoration:none;
+padding:.6rem 1.4rem;
+border-radius:6px;
+font-size:.8rem
+}
+
+.btn-primary{
+background:var(--accent);
+color:black
+}
+
+.btn-outline{
+border:1px solid var(--border);
+color:white
+}
+
+/* ===== ABOUT ===== */
+
+.about-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:3rem;
+}
+
+.about-text p{
+margin-bottom:1rem;
+color:var(--muted)
+}
+
+.about-stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:1rem
+}
+
+.stat-card{
+background:var(--bg3);
+border:1px solid var(--border);
+padding:1.4rem;
+border-radius:10px
+}
+
+.stat-num{
+font-size:2rem;
+color:var(--accent)
+}
+
+/* ===== SKILLS ===== */
+
+#skills{
+background:var(--bg2);
+border-radius:20px
+}
+
+.skills-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:1rem
+}
+
+.skill-category{
+background:var(--bg3);
+border:1px solid var(--border);
+padding:1.4rem;
+border-radius:10px
+}
+
+.skill-tags{
+display:flex;
+flex-wrap:wrap;
+gap:.5rem
+}
+
+.skill-tag{
+background:#11161b;
+padding:.3rem .6rem;
+border-radius:5px;
+font-size:.75rem
+}
+
+/* ===== PROJECTS ===== */
+
+.projects-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:1.5rem
+}
+
+.project-card{
+background:var(--bg3);
+border:1px solid var(--border);
+border-radius:14px;
+padding:1.6rem
+}
+
+.project-title{
+font-size:1.1rem;
+margin-bottom:.5rem
+}
+
+.project-desc{
+font-size:.82rem;
+color:var(--muted);
+margin-bottom:1rem
+}
+
+.project-stack{
+display:flex;
+flex-wrap:wrap;
+gap:.3rem
+}
+
+.project-tag{
+background:rgba(0,216,164,0.08);
+border:1px solid rgba(0,216,164,0.15);
+padding:.2rem .6rem;
+font-size:.7rem;
+color:var(--accent);
+border-radius:4px
+}
+
+/* ===== TIMELINE ===== */
+
+.timeline{
+border-left:1px solid var(--border);
+padding-left:1.5rem
+}
+
+.timeline-item{
+margin-bottom:2rem
+}
+
+.timeline-year{
+color:var(--accent);
+font-size:.7rem
+}
+
+.timeline-degree{
+font-size:1rem;
+font-weight:bold
+}
+
+.timeline-school{
+color:var(--muted)
+}
+
+/* ===== CONTACT ===== */
+
+#contact{
+background:var(--bg2);
+border-radius:20px
+}
+
+.contact-link{
+display:flex;
+justify-content:space-between;
+padding:1rem;
+background:var(--bg3);
+border:1px solid var(--border);
+border-radius:8px;
+margin-bottom:.6rem;
+text-decoration:none;
+color:white
+}
+
+footer{
+text-align:center;
+padding:2rem;
+border-top:1px solid var(--border);
+color:var(--muted)
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#hero">R.dev</a>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<!-- HERO -->
+
+<section id="hero">
+
+<div class="hero-tag">Django Backend Developer · 2+ Years Experience</div>
+
+<h1 class="hero-name">
+Ritesh<br>
+<span class="line2">Kumar</span>
+</h1>
+
+<p class="hero-role">
+Backend Engineer · <span>Django · Python · AWS · Redis</span>
+</p>
+
+<p class="hero-desc">
+Backend developer with ~2 years experience building scalable APIs,
+data processing systems and internal tools using Django and Python.
+
+Currently working at GlobalLogic supporting large-scale Google
+vendor platforms and backend analytics systems.
+</p>
+
+<div class="hero-actions">
+<a href="#projects" class="btn-primary">View Projects</a>
+<a href="#contact" class="btn-outline">Contact</a>
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<h2 class="section-title">Who am I?</h2>
+
+<div class="about-grid">
+
+<div class="about-text">
+
+<p>
+I'm <strong>Ritesh Kumar</strong>, a backend engineer specializing
+in <strong>Django, Python and scalable backend systems</strong>.
+</p>
+
+<p>
+I graduated from <strong>Aryabhatta College, University of Delhi</strong>
+and currently work at <strong>GlobalLogic (Hitachi Group)</strong>.
+</p>
+
+<p>
+My work focuses on backend architecture, REST APIs,
+large scale data processing and improving system performance.
+</p>
+
+</div>
+
+<div class="about-stats">
+
+<div class="stat-card">
+<div class="stat-num">2+</div>
+<div class="stat-label">Years Experience</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-num">8.7</div>
+<div class="stat-label">CGPA</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-num">11T+</div>
+<div class="stat-label">URL Dataset Optimized</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-num">4+</div>
+<div class="stat-label">Backend Projects</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h2 class="section-title">Tech <span>Stack</span></h2>
+
+<div class="skills-grid">
+
+<div class="skill-category">
+<div class="skill-cat-title">Backend</div>
+<div class="skill-tags">
+<span class="skill-tag">Python</span>
+<span class="skill-tag">Django</span>
+<span class="skill-tag">Django REST</span>
+<span class="skill-tag">Celery</span>
+<span class="skill-tag">Redis</span>
+<span class="skill-tag">MySQL</span>
+</div>
+</div>
+
+<div class="skill-category">
+<div class="skill-cat-title">Cloud & DevOps</div>
+<div class="skill-tags">
+<span class="skill-tag">AWS</span>
+<span class="skill-tag">Docker</span>
+<span class="skill-tag">Linux</span>
+<span class="skill-tag">Git</span>
+</div>
+</div>
+
+<div class="skill-category">
+<div class="skill-cat-title">Frontend</div>
+<div class="skill-tags">
+<span class="skill-tag">HTML</span>
+<span class="skill-tag">CSS</span>
+<span class="skill-tag">JavaScript</span>
+<span class="skill-tag">React</span>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<h2 class="section-title">What I've <span>Built</span></h2>
+
+<div class="projects-grid">
+
+<div class="project-card">
+<div class="project-title">Large Scale URL Processing System</div>
+<div class="project-desc">
+Reduced 17 trillion URLs dataset to 11 trillion unique entries
+through large scale data normalization and filtering pipeline.
+</div>
+<div class="project-stack">
+<span class="project-tag">Python</span>
+<span class="project-tag">Django</span>
+<span class="project-tag">Data Processing</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-title">Task Queue System</div>
+<div class="project-desc">
+Built asynchronous job processing using Celery and Redis
+for handling background data processing tasks.
+</div>
+<div class="project-stack">
+<span class="project-tag">Celery</span>
+<span class="project-tag">Redis</span>
+<span class="project-tag">Django</span>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-title">REST API Backend</div>
+<div class="project-desc">
+Developed scalable REST APIs using Django REST Framework
+including authentication and optimized database queries.
+</div>
+<div class="project-stack">
+<span class="project-tag">Django</span>
+<span class="project-tag">DRF</span>
+<span class="project-tag">MySQL</span>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- EXPERIENCE -->
+
+<section id="experience">
+
+<h2 class="section-title">Where I've <span>Worked</span></h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-year">2024 — Present</div>
+<div class="timeline-degree">Software Engineer</div>
+<div class="timeline-school">GlobalLogic (Hitachi Group)</div>
+<p>
+Built a Django-based URL intelligence platform to analyze and classify web URLs from crawler datasets. <br>
+
+Designed REST APIs using Django REST Framework to ingest and process domain datasets.<br>
+
+Implemented regex-based classification engine for large-scale URL categorization.<br>
+
+Developed asynchronous URL validation pipelines using Celery and Redis. <br>
+
+Integrated HTTP status monitoring and content safety checks to detect hacked or spam pages. <br>
+
+Optimized URL processing performance for high-volume domain datasets. <br>
+
+Deployed services using Docker and AWS EC2 with PostgreSQL RDS.<br>
+
+Implemented structured logging and monitoring using Prometheus and Grafana. <br>
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- EDUCATION -->
+
+<section id="education">
+
+<h2 class="section-title">My <span>Background</span></h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="timeline-year">2021 — 2024</div>
+<div class="timeline-degree">B.Sc Computer Science</div>
+<div class="timeline-school">Aryabhatta College — University of Delhi</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2 class="section-title">Let's <span>Connect</span></h2>
+
+<a href="mailto:riteshbth7132@gmail.com" class="contact-link">
+<span>Email</span>
+<span>riteshbth7132@gmail.com</span>
+</a>
+
+<a href="https://github.com/Ritesh132" class="contact-link">
+<span>GitHub</span>
+<span>github.com/Ritesh132</span>
+</a>
+
+<a href="https://linkedin.com/in/Ritesh132" class="contact-link">
+<span>LinkedIn</span>
+<span>linkedin.com/in/Ritesh132</span>
+</a>
+
+</section>
+
+<footer>
+Designed & Built by <span>Ritesh Kumar</span> · 2026
+</footer>
+
+</body>
+</html>
